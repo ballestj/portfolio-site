@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Ballestero | Behavioral Economics & Quantitative Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #c0392b;
+            --text-primary: #2c3e50;
+            --text-secondary: #5d6d7e;
+            --text-light: #85929e;
+            --background: #ffffff;
+            --surface: #fafbfc;
+            --border: #d5dbdb;
+            --border-light: #eaeded;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--background);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* Header Section */
+        .header {
+            background: var(--background);
+            padding: 3rem 0 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 4px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+        }
+
+        .header-info h1 {
+            font-size: 2.75rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .header-info .title {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .header-info .institution {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .header-info .bio {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 600px;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            padding: 0.25rem 0;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-info i {
+            width: 18px;
+            margin-right: 0.5rem;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--surface);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        /* Sections */
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section:not(:last-child) {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        /* Research Section */
+        .research-item {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .research-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .research-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .research-title a {
+            color: var(--primary-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .research-title a:hover {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        .research-meta {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .research-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .research-metrics {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .metrics-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--background);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .tag.methodology {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .tag.field {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid #f8f9fa;
+            font-size: 0.95rem;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-level {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* CV Section */
+        .cv-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .cv-section h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .cv-item {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border-light);
+            position: relative;
+        }
+
+        .cv-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .cv-item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .cv-item-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .cv-item-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--surface);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .header-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .header-info h1 {
+                font-size: 2.2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav, .footer {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                border-bottom: none;
+            }
+            
+            .research-item {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="assets/profile.jpg" alt="Jorge Ballestero" class="profile-image">
+                
+                <div class="header-info">
+                    <h1>Jorge D. Ballestero</h1>
+                    <div class="title">Dual Degree Student, Economics & Political Philosophy</div>
+                    <div class="institution">Columbia University & Sciences Po Paris</div>
+                    <p class="bio">
+                      I am an undergraduate researcher specializing in behavioral economics with quantitative methods, combining data-driven insights with human-centered perspectives to solve complex strategic problems. My work integrates experimental design, statistical analysis, and cross-cultural insights to understand decision-making processes in organizational and policy contexts.
+                    </p>
+                </div>
+                
+                <div class="contact-info">
+                    <a href="mailto:jdb2250@columbia.edu">
+                        <i class="fas fa-envelope"></i>jdb2250@columbia.edu
+                    </a>
+                    <a href="https://www.linkedin.com/in/jorge-d-ballestero-94117328a/" target="_blank">
+                        <i class="fab fa-linkedin"></i>LinkedIn Profile
+                    </a>
+                    <a href="pdf/JB_CV.pdf" download>
+                        <i class="fas fa-file-pdf"></i>Curriculum Vitae
+                    </a>
+                    <a href="https://github.com/ballestj" target="_blank">
+                        <i class="fab fa-github"></i>GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#research" class="active">Research</a></li>
+                <li><a href="#skills">Technical Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">Research</h2>
+            
+            <div class="research-item">
+                <h3 class="research-title"><a href="anchoring-analysis.html">Anchoring in Context: Decoy Effects and Dynamic Reference Distortion in
+                  Evaluation</a></h3>
+                <div class="research-meta">Research Proposal • Behavioral Economics • Columbia University</div>
+                <p class="research-description">
+                  This research proposal explores how sequential evaluation environments distort not just subjective impressions but also categorical and numerical candidate metrics. 
+                  It introduces a behavioral experiment and formal modeling framework to test whether anchoring and trait salience systematically bias structured resume assessments. 
+                  By showing how even seemingly objective traits are subject to contextual distortion, the project aims to challenge conventional assumptions about fairness and accuracy in high-stakes decision-making.
+                </p>
+                
+                <div class="research-metrics">
+                    <div class="metrics-title">Proposed Experimental Scope</div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-value">2</div>
+                            <div class="metric-label">Behavioral Models</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">200+</div>
+                            <div class="metric-label">Planned Participants</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">8</div>
+                            <div class="metric-label">Treatment Conditions</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Online</div>
+                            <div class="metric-label">Experimental Platform</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="research-tags">
+                    <span class="tag methodology">Experimental Design</span>
+                    <span class="tag methodology">Theoretical Modeling</span>
+                    <span class="tag field">Behavioral Economics</span>
+                    <span class="tag">Decision Theory</span>
+                    <span class="tag">Choice Architecture</span>
+                </div>
+            </div>
+
+            <div class="research-item">
+                <h3 class="research-title"><a href="otree-climate-insurance.html">Experimental Design for Market Unraveling in Climate Insurance</a></h3>
+                <div class="research-meta">Research Assistant Project • Columbia University Economics Department</div>
+                <p class="research-description">
+                    Designed and programmed three oTree experiments investigating market unraveling dynamics in climate insurance markets. 
+                    Built comprehensive front-end and back-end experimental infrastructure with randomized role assignment, real-time data 
+                    capture, and adaptive participant grouping. Research contributes to PhD dissertation integrating laboratory and field 
+                    data from Colombian farmers, examining behavioral responses to climate risk.
+                </p>
+                
+                <div class="research-metrics">
+                    <div class="metrics-title">Experimental Scope</div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-value">3</div>
+                            <div class="metric-label">Experimental Designs</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">100+</div>
+                            <div class="metric-label">Planned Participants</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">12</div>
+                            <div class="metric-label">Treatment Conditions</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Real-time</div>
+                            <div class="metric-label">Data Capture</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="research-tags">
+                    <span class="tag methodology">oTree Programming</span>
+                    <span class="tag methodology">Experimental Design</span>
+                    <span class="tag field">Behavioral Economics</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">HTML/JavaScript</span>
+                </div>
+            </div>
+
+            <div class="research-item">
+                <h3 class="research-title"><a href="university-rankings-analysis.html">Database Analysis: Global University Rankings and Performance Metrics</a></h3>
+                <div class="research-meta">Independent Research Project • Data-Driven Analysis</div>
+                <p class="research-description">
+                    Comprehensive analysis of QS World University Rankings database examining patterns in institutional performance 
+                    across geographic regions and academic disciplines. Applied data manipulation and statistical techniques to identify 
+                    trends in university performance metrics, exploring correlations between rankings factors and institutional 
+                    characteristics across global higher education landscape.
+                </p>
+                
+                <div class="research-metrics">
+                    <div class="metrics-title">Data Scope</div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-value">1,000+</div>
+                            <div class="metric-label">Universities Analyzed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">6</div>
+                            <div class="metric-label">Ranking Metrics</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Global</div>
+                            <div class="metric-label">Geographic Scope</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Multi-year</div>
+                            <div class="metric-label">Temporal Analysis</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="research-tags">
+                    <span class="tag methodology">Database Analysis</span>
+                    <span class="tag methodology">Statistical Computing</span>
+                    <span class="tag field">Educational Analytics</span>
+                    <span class="tag">R Programming</span>
+                    <span class="tag">Data Visualization</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Competencies</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Statistical Methods</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-level">Proficient:</span> Regression Analysis & Modeling</li>
+                        <li><span class="skill-level">Advanced:</span> Experimental Design & Implementation</li>
+                        <li><span class="skill-level">Intermediate:</span> Predictive Modeling</li>
+                        <li><span class="skill-level">Proficient:</span> Data Visualization & Reporting</li>
+                        <li><span class="skill-level">Intermediate:</span> Causal Inference Methods</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-level">Advanced:</span> R (statistical computing, data analysis)</li>
+                        <li><span class="skill-level">Intermediate:</span> Python (data science, experimental design)</li>
+                        <li><span class="skill-level">Intermediate:</span> SQL (database queries, data management)</li>
+                        <li><span class="skill-level">Intermediate:</span> HTML/JavaScript (web development, oTree)</li>
+                        <li><span class="skill-level">Proficient:</span> Excel (advanced modeling, analysis)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Language Skills</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-level">Native:</span> English, Spanish, French</li>
+                        <li><span class="skill-level">Professional:</span> Portuguese</li>
+                        <li><span class="skill-level">Conversational:</span> Russian, German, Italian</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Research & Analysis</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-level">Advanced:</span> Experimental Design (oTree, Lab)</li>
+                        <li><span class="skill-level">Proficient:</span> Database Analysis & Management</li>
+                        <li><span class="skill-level">Advanced:</span> Behavioral Economics Research</li>
+                        <li><span class="skill-level">Proficient:</span> Policy Analysis & Translation</li>
+                        <li><span class="skill-level">Intermediate:</span> Financial Market Analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="cv-section">
+                <div class="cv-item">
+                    <div class="cv-item-title">Research Assistant</div>
+                    <div class="cv-item-meta">Columbia University Economics Department • February 2025 - Present</div>
+                    <div class="cv-item-description">
+                        Design and program oTree experiments on market unraveling in climate insurance for 100+ CELSS lab participants. 
+                        Built comprehensive experimental infrastructure with randomized role assignment and real-time data capture. 
+                        Research contributes to PhD dissertation integrating lab and field data from Colombian farmers.
+                    </div>
+                </div>
+                
+                <div class="cv-item">
+                    <div class="cv-item-title">Dual BA Representative</div>
+                    <div class="cv-item-meta">Columbia University Student Council • September 2024 - Present</div>
+                    <div class="cv-item-description">
+                        Designed and launched academic mentoring system reaching 50+ Dual BA students. Initiated collaboration 
+                        with Columbia deans to scale mentorship structure across all Dual Degree pathways. Developed proposals 
+                        to democratize research access through GS policy committee.
+                    </div>
+                </div>
+                
+                <div class="cv-item">
+                    <div class="cv-item-title">Migration Assistant Intern</div>
+                    <div class="cv-item-meta">MigrationAid Emergency Response Hostel, Budapest • May 2023 - August 2023</div>
+                    <div class="cv-item-description">
+                        Managed daily logistics for distributing 100 meals to Ukrainian refugees under resource constraints. 
+                        Designed and implemented "Free Supermarket" model to streamline equitable access to resources, 
+                        prioritizing dignity and personalization in humanitarian aid delivery.
+                    </div>
+                </div>
+                
+                <div class="cv-item">
+                    <div class="cv-item-title">Freelance Translator</div>
+                    <div class="cv-item-meta">UN-led Projects (UNICEF, UNODC) • October 2021 - March 2024</div>
+                    <div class="cv-item-description">
+                        Translated technical proposals and policy documents across English, Spanish, and French for vaccination 
+                        campaigns and pedagogic initiatives. Produced stakeholder-facing summaries to improve cross-linguistic 
+                        accessibility and operational clarity for international coordination.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="cv-section">
+                <div class="cv-item">
+                    <div class="cv-item-title">Dual Bachelor of Arts, Economics and Political Philosophy</div>
+                    <div class="cv-item-meta">Columbia University & Sciences Po Paris • 2022-2026</div>
+                    <div class="cv-item-description">
+                        Highly selective dual degree program combining rigorous economics training with philosophical analysis 
+                        of political institutions. Dean's List at Columbia University, Cum Laude Honors at Sciences Po Paris. 
+                        Coursework includes Behavioral Economics, Financial Economics, and advanced quantitative methods.
+                    </div>
+                </div>
+                
+                <div class="cv-item">
+                    <div class="cv-item-title">Special Concentration in Business Management</div>
+                    <div class="cv-item-meta">Columbia Business School • 2025-2026</div>
+                    <div class="cv-item-description">
+                        Competitive undergraduate concentration providing graduate-level business education alongside liberal arts degree. Only 45 students admitted from both Junior and Sophomore classes. 
+                        Coursework includes Corporate Finance, Strategy Formulation, Marketing, and International Finance and Trade. 
+                        Integration of behavioral economics insights with business strategy and decision-making frameworks.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Jorge Ballestero. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple navigation highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('.section');
+            
+            function highlightNavigation() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightNavigation);
+        });
+    </script>
+</body>
+</html>
