@@ -1,108 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anchoring in Context: Decoy Effects and Dynamic Reference Distortion in
-        Evaluation | Jorge Ballestero</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Anchoring in Context — Jorge D. Ballestero</title>
+
     <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #fafbfc;
-            color: #2c3e50;
-            line-height: 1.7;
+        :root {
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Instrument Sans', -apple-system, sans-serif;
+            --font-mono: 'DM Mono', monospace;
+            --bg: #F8F7F4;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F0EEE9;
+            --text-primary: #16161A;
+            --text-secondary: #52524F;
+            --text-tertiary: #8A8A84;
+            --accent: #9C7C38;
+            --accent-soft: rgba(156, 124, 56, 0.07);
+            --accent-medium: rgba(156, 124, 56, 0.13);
+            --border: rgba(22, 22, 26, 0.08);
+            --border-strong: rgba(22, 22, 26, 0.15);
         }
-        .container {
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Nav ── */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: color-mix(in srgb, var(--bg) 94%, transparent);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2.5rem;
+        }
+        .nav-inner {
             max-width: 900px;
-            margin: auto;
-            padding: 3rem 2rem;
-            background: #ffffff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-radius: 8px;
-            margin-top: 2rem;
+            margin: 0 auto;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-wordmark {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .nav-wordmark span { color: var(--accent); }
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+        .nav-back:hover { color: var(--accent); }
+        .nav-back i { font-size: 0.6rem; }
+
+        /* ── Page ── */
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2.5rem 5rem;
+        }
+
+        /* ── Header ── */
+        .page-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+        .page-label::after {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+        }
+        .page-meta {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--text-tertiary);
+            margin-bottom: 2.5rem;
+        }
+
+        /* ── Divider ── */
+        .rule {
+            width: 32px;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.4;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ── Abstract block ── */
+        .abstract {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 2px solid var(--accent);
+            border-radius: 4px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .abstract-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        .abstract p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 0.85rem;
+        }
+        .abstract p:last-child { margin-bottom: 0; }
+
+        /* ── Embed ── */
+        .embed-wrapper {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            background: var(--bg-secondary);
+        }
+        .embed-wrapper iframe {
+            width: 100%;
+            height: 680px;
+            border: none;
+            display: block;
+        }
+
+        /* ── Actions ── */
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
             margin-bottom: 3rem;
         }
-        h1 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-            line-height: 1.3;
-        }
-        .meta {
-            font-size: 0.95rem;
-            color: #85929e;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-        .abstract {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: #5d6d7e;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-left: 4px solid #c0392b;
-            border-radius: 4px;
-        }
-        iframe {
-            width: 100%;
-            height: 700px;
-            margin: 2rem 0;
-            border: 1px solid #d5dbdb;
-            border-radius: 6px;
-        }
-        .download-btn {
-            display: inline-block;
-            margin: 1rem 0.5rem 1rem 0;
-            padding: 0.75rem 1.5rem;
-            background-color: #2c3e50;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-        .download-btn:hover {
-            background-color: #34495e;
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 2rem;
-            text-decoration: none;
-            color: #2c3e50;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
             font-weight: 500;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
+            letter-spacing: 0.02em;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid var(--border-strong);
+            color: var(--text-primary);
+            background: var(--bg-card);
         }
-        .back-link:hover {
-            color: #c0392b;
-            border-bottom-color: #c0392b;
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+        .btn--primary {
+            background: var(--text-primary);
+            color: var(--bg);
+            border-color: var(--text-primary);
+        }
+        .btn--primary:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .btn i { font-size: 0.75rem; }
+
+        /* ── Footer ── */
+        .page-footer {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .footer-back {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.25s ease;
+        }
+        .footer-back:hover { color: var(--accent); }
+
+        /* ── Tags ── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 2rem;
+        }
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.06em;
+            color: var(--text-tertiary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 2px;
+        }
+        .tag--accent {
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-color: var(--accent-medium);
+        }
+
+        /* ── Preview image ── */
+        .preview-img {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .page { padding: 5rem 1.5rem 4rem; }
+            .nav { padding: 0 1.5rem; }
+            .actions { flex-direction: column; }
+            .btn { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Quantifying Anchoring Effects in Structured Evaluation: A Mixed-Effects Regression Analysis</h1>
-        <div class="meta">Research Proposal • Behavioral Economics Coursework • May 2025</div>
-        
-        <div class="abstract">
-            <strong>Abstract:</strong> How do evaluators make decisions when faced with structured but sequential information? This paper investigates how dynamic anchoring and trait-level salience shape candidate evaluations in high-stakes screening environments. I propose two behavioral models: a dynamic anchoring model, which captures how evaluators update reference points over time, and a trait salience model, which models how attention weights shift across observable attributes. While prior work focused on narrative or interview-based evaluations to highlight subjective biases in high-stakes evaluation, this study uses purely quantitative resumes to isolate cognitive distortions in numeric data. <br> <br> Through an online experiment, participants evaluate sequences of fictional resumes under time pressure. Experimental treatments manipulate resume ordering, the presence of decoy candidates, and access to an ideal reference profile. The results will test whether biases persist between traits, notably though evolving reference points, and whether introducing a stable benchmark can mitigate distortions in perception. This project contributes to literatures on bounded rationality, decision-making under uncertainty, and behavioral design in evaluation contexts such as hiring, admissions, and peer review.
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-wordmark">Jorge<span>.</span></a>
+            <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to site</a>
         </div>
-        
-        <iframe src="pdf/anchoring-analysis.pdf"></iframe>
-        
-        <a class="download-btn" href="pdf/anchoring-analysis.pdf" download>
-            Download Full Paper (PDF)
-        </a>
-        <a class="download-btn" href="data/anchoring-data.csv" download>
-            Download Dataset
-        </a>
-        
-        <a class="back-link" href="index.html">← Back to Portfolio</a>
-    </div>
+    </nav>
+    <main class="page">
+        <p class="page-label">Behavioral Economics · Columbia University</p>
+        <h1 class="page-title">Anchoring in Context: Sequential Evaluation & Decision Quality</h1>
+        <p class="page-meta">Research Proposal · Behavioral Economics Coursework · May 2025</p>
+        <div class="rule"></div>
+        <div class="tags">
+            <span class="tag tag--accent">Decision Theory</span>
+            <span class="tag tag--accent">Experimental Design</span>
+            <span class="tag">Behavioral Economics</span>
+            <span class="tag">Choice Architecture</span>
+            <span class="tag">Mixed-Effects Regression</span>
+        </div>
+        <div class="abstract">
+            <div class="abstract-label">Abstract</div>
+            <p>How do evaluators make decisions when faced with structured but sequential information? This paper investigates how dynamic anchoring and trait-level salience shape candidate evaluations in high-stakes screening environments. I propose two behavioral models: a dynamic anchoring model, which captures how evaluators update reference points over time, and a trait salience model, which models how attention weights shift across observable attributes.</p>
+            <p>While prior work focused on narrative or interview-based evaluations to highlight subjective biases, this study uses purely quantitative resumes to isolate cognitive distortions in numeric data. Through an online experiment, participants evaluate sequences of fictional resumes under time pressure. Experimental treatments manipulate resume ordering, the presence of decoy candidates, and access to an ideal reference profile.</p>
+            <p>The results test whether biases persist between traits through evolving reference points, and whether introducing a stable benchmark can mitigate distortions in perception. This project contributes to literatures on bounded rationality, decision-making under uncertainty, and behavioral design in evaluation contexts such as hiring, admissions, and peer review.</p>
+        </div>
+        <div class="embed-wrapper">
+            <iframe src="pdf/anchoring-analysis.pdf" title="Anchoring Analysis Paper"></iframe>
+        </div>
+        <div class="actions">
+            <a href="pdf/anchoring-analysis.pdf" download class="btn btn--primary"><i class="fas fa-file-alt"></i> Download Paper (PDF)</a>
+            <a href="data/anchoring-data.csv" download class="btn"><i class="fas fa-table"></i> Download Dataset</a>
+        </div>
+        <div class="page-footer">
+            <a href="index.html" class="footer-back"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+        </div>
+    </main>
 </body>
 </html>

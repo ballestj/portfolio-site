@@ -1,809 +1,481 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jorge Ballestero | Behavioral Economics & Quantitative Analysis</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Jorge D. Ballestero | Economist · Analyst · Strategist</title>
+    <meta name="description" content="Economist and strategist specializing in behavioral research, quantitative analysis, and applied decision science. Columbia University & Sciences Po Paris.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- Favicon Links -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=1">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=1">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png?v=1">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/web-app-manifest-192x192.png?v=1">
-    <link rel="icon" type="image/png" sizes="512x512" href="assets/web-app-manifest-512x512.png?v=1">
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=1">
-    <link rel="manifest" href="assets/site.webmanifest?v=1">
-
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #c0392b;
-            --text-primary: #2c3e50;
-            --text-secondary: #5d6d7e;
-            --text-light: #85929e;
-            --background: #ffffff;
-            --surface: #fafbfc;
-            --border: #d5dbdb;
-            --border-light: #eaeded;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.7;
-            color: var(--text-primary);
-            background-color: var(--background);
-            font-size: 16px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Crimson Text', serif;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .header {
-            background: var(--background);
-            padding: 3rem 0 2rem;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .header-content {
-            display: grid;
-            grid-template-columns: 200px 1fr auto;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .profile-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 4px;
-            object-fit: cover;
-            border: 1px solid var(--border);
-        }
-
-        .header-info h1 {
-            font-size: 2.75rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .header-info .title {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-weight: 400;
-        }
-
-        .header-info .institution {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .header-info .bio {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            max-width: 600px;
-        }
-
-        .contact-info {
-            text-align: right;
-            font-size: 0.95rem;
-        }
-
-        .contact-info a {
-            color: var(--primary-color);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.75rem;
-            padding: 0.25rem 0;
-        }
-
-        .contact-info a:hover {
-            color: var(--accent-color);
-        }
-
-        .contact-info i {
-            width: 18px;
-            margin-right: 0.5rem;
-        }
-
-        .nav {
-            background: var(--surface);
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-light);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary-color);
-            border-bottom-color: var(--accent-color);
-        }
-
-        .section {
-            padding: 3rem 0;
-        }
-
-        .section:not(:last-child) {
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-color);
-            display: inline-block;
-        }
-
-        .research-item {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .research-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .research-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-        }
-
-        .research-title a {
-            color: var(--primary-color);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .research-title a:hover {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
-        }
-
-        .research-meta {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .research-description {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .research-metrics {
-            background: var(--surface);
-            border: 1px solid var(--border-light);
-            border-radius: 4px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .metrics-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .metric {
-            text-align: center;
-        }
-
-        .metric-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            font-family: 'Source Sans Pro', sans-serif;
-        }
-
-        .metric-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
-        }
-
-        .research-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background: var(--background);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 3px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .tag.methodology {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .tag.field {
-            background: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .skill-category h3 {
-            font-size: 1.25rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 0.5rem;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            border-bottom: 1px solid #f8f9fa;
-            font-size: 0.95rem;
-        }
-
-        .skill-list li:last-child {
-            border-bottom: none;
-        }
-
-        .skill-level {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .cv-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .cv-section h3 {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 0.5rem;
-        }
-
-        .cv-item {
-            margin-bottom: 2rem;
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--border-light);
-            position: relative;
-        }
-
-        .cv-item::before {
-            content: '';
-            position: absolute;
-            left: -5px;
-            top: 0.5rem;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-color);
-            border-radius: 50%;
-        }
-
-        .cv-item-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.25rem;
-        }
-
-        .cv-item-meta {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 0.75rem;
-        }
-
-        .cv-item-description {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .footer {
-            background: var(--surface);
-            padding: 2rem 0;
-            margin-top: 3rem;
-            text-align: center;
-            border-top: 1px solid var(--border-light);
-        }
-
-        .footer p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            .header-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .contact-info {
-                text-align: center;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                gap: 1rem;
-                justify-content: center;
-            }
-
-            .header-info h1 {
-                font-size: 2.2rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media print {
-            .nav, .footer {
-                display: none;
-            }
-
-            .section {
-                page-break-inside: avoid;
-                border-bottom: none;
-            }
-
-            .research-item {
-                page-break-inside: avoid;
-            }
-        }
-    </style>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=2">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png?v=2">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=2">
+    <link rel="manifest" href="assets/site.webmanifest?v=2">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <img src="assets/profile.jpg" alt="Jorge Ballestero" class="profile-image">
 
-                <div class="header-info">
-                    <h1>Jorge D. Ballestero</h1>
-                    <div class="title">Dual Degree Student, Economics & Political Philosophy</div>
-                    <div class="institution">Columbia University & Sciences Po Paris</div>
-                    <p class="bio">
-                        I am an undergraduate researcher specializing in behavioral economics with quantitative methods, combining data-driven insights with human-centered perspectives to solve complex strategic problems. My work integrates experimental design, statistical analysis, and cross-cultural insights to understand decision-making processes in organizational and policy contexts.
-                    </p>
-                </div>
-
-                <div class="contact-info">
-                    <a href="mailto:jdb2250@columbia.edu">
-                        <i class="fas fa-envelope"></i>jdb2250@columbia.edu
-                    </a>
-                    <a href="https://www.linkedin.com/in/jorge-d-ballestero-94117328a/" target="_blank">
-                        <i class="fab fa-linkedin"></i>LinkedIn Profile
-                    </a>
-                    <a href="pdf/JB_CV.pdf" download>
-                        <i class="fas fa-file-pdf"></i>Curriculum Vitae
-                    </a>
-                    <a href="https://github.com/ballestj" target="_blank">
-                        <i class="fab fa-github"></i>GitHub
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <nav class="nav">
-        <div class="container">
-            <ul class="nav-links">
-                <li><a href="#research" class="active">Research</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Technical Skills</a></li>
+    <!-- NAVIGATION -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-wordmark">Jorge<span class="nav-dot">.</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#writing">Writing</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="nav-actions">
+                <button class="theme-btn" id="theme-btn" aria-label="Toggle dark mode">
+                    <svg class="theme-icon moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="theme-icon sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+                <a href="pdf/JB_CV.pdf" download class="nav-cv-btn"><span>CV</span><i class="fas fa-arrow-down"></i></a>
+                <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+            </div>
         </div>
     </nav>
-    <section id="research" class="section">
-        <div class="container">
-            <h2 class="section-title">Research</h2>
-            
-            <div class="research-item">
-                <h3 class="research-title"><a href="anchoring-analysis.html">Anchoring in Context: Decoy Effects and Dynamic Reference Distortion in Evaluation</a></h3>
-                <div class="research-meta">Research Proposal • Behavioral Economics • Columbia University</div>
-                <p class="research-description">
-                    This research proposal explores how sequential evaluation environments distort not just subjective impressions but also categorical and numerical candidate metrics. 
-                    It introduces a behavioral experiment and formal modeling framework to test whether anchoring and trait salience systematically bias structured resume assessments. 
-                    By showing how even seemingly objective traits are subject to contextual distortion, the project aims to challenge conventional assumptions about fairness and accuracy in high-stakes decision-making.
-                </p>
-                <div class="research-metrics">
-                    <div class="metrics-title">Proposed Experimental Scope</div>
-                    <div class="metrics-grid">
-                        <div class="metric">
-                            <div class="metric-value">2</div>
-                            <div class="metric-label">Behavioral Models</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">200+</div>
-                            <div class="metric-label">Planned Participants</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">8</div>
-                            <div class="metric-label">Treatment Conditions</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">Online</div>
-                            <div class="metric-label">Experimental Platform</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="research-tags">
-                    <span class="tag methodology">Experimental Design</span>
-                    <span class="tag methodology">Theoretical Modeling</span>
-                    <span class="tag field">Behavioral Economics</span>
-                    <span class="tag">Decision Theory</span>
-                    <span class="tag">Choice Architecture</span>
+
+    <!-- Mobile overlay -->
+    <div class="mobile-overlay" id="mobile-overlay">
+        <div class="mobile-menu-inner">
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#research" class="mobile-link">Research</a>
+            <a href="#experience" class="mobile-link">Experience</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#education" class="mobile-link">Education</a>
+            <a href="#skills" class="mobile-link">Skills</a>
+            <a href="#writing" class="mobile-link">Writing</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+            <div class="mobile-menu-footer">
+                <a href="mailto:jdb2250@columbia.edu">jdb2250@columbia.edu</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero" id="hero">
+        <div class="hero-bg-accent"></div>
+        <div class="container hero-container">
+            <div class="hero-left">
+                <p class="hero-tag anim-up" style="--delay:0.15s">Economist · Analyst · Strategist</p>
+                <h1 class="hero-name anim-up" style="--delay:0.3s">Jorge D.<br><em>Ballestero</em></h1>
+                <p class="hero-description anim-up" style="--delay:0.5s">I want to understand what drives decisions — in markets, institutions, and people — and get better at informing them. I work at the intersection of behavioral research, quantitative analysis, and applied strategy, and I care most about problems where the analysis changes the outcome.</p>
+                <div class="hero-contact anim-up" style="--delay:0.65s">
+                    <a href="mailto:jdb2250@columbia.edu" class="hero-contact-item"><i class="fas fa-envelope"></i><span>jdb2250@columbia.edu</span></a>
+                    <a href="https://www.linkedin.com/in/jorge-d-ballestero-94117328a/" target="_blank" rel="noopener" class="hero-contact-item"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
+                    <a href="https://github.com/ballestj" target="_blank" rel="noopener" class="hero-contact-item"><i class="fab fa-github"></i><span>GitHub</span></a>
                 </div>
             </div>
-
-            <div class="research-item">
-                <h3 class="research-title"><a href="otree-climate-insurance.html">Experimental Design for Market Unraveling in Climate Insurance</a></h3>
-                <div class="research-meta">Research Assistant Project • Columbia University Economics Department</div>
-                <p class="research-description">
-                    Designed and programmed three oTree experiments investigating market unraveling dynamics in climate insurance markets. 
-                    Built comprehensive front-end and back-end experimental infrastructure with randomized role assignment, real-time data 
-                    capture, and adaptive participant grouping. Research contributes to PhD dissertation integrating laboratory and field 
-                    data from Colombian farmers, examining behavioral responses to climate risk.
-                </p>
-                <div class="research-metrics">
-                    <div class="metrics-title">Experimental Scope</div>
-                    <div class="metrics-grid">
-                        <div class="metric">
-                            <div class="metric-value">3</div>
-                            <div class="metric-label">Experimental Designs</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">100+</div>
-                            <div class="metric-label">Planned Participants</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">12</div>
-                            <div class="metric-label">Treatment Conditions</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">Real-time</div>
-                            <div class="metric-label">Data Capture</div>
-                        </div>
-                    </div>
+            <div class="hero-right anim-up" style="--delay:0.4s">
+                <div class="hero-portrait">
+                    <img src="assets/profilepicjb.jpg" alt="Jorge D. Ballestero" class="hero-img" loading="eager">
+                    <div class="hero-portrait-frame"></div>
                 </div>
-                <div class="research-tags">
-                    <span class="tag methodology">oTree Programming</span>
-                    <span class="tag methodology">Experimental Design</span>
-                    <span class="tag field">Behavioral Economics</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">HTML/JavaScript</span>
+                <div class="hero-stats">
+                    <div class="hero-stat"><span class="hero-stat-value">7</span><span class="hero-stat-label">Languages</span></div>
+                    <div class="hero-stat"><span class="hero-stat-value">3</span><span class="hero-stat-label">Continents</span></div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title">Projects & Applications</h2>
-            
-            <div class="research-item">
-                <h3 class="research-title">
-                    <a href="unisearch-project.html" target="_blank">UniSearch: Global University Discovery Platform</a>
-                </h3>
-                <div class="research-meta">Full-Stack Web App • React, FastAPI, SQLite • 2025</div>
-                <p class="research-description">
-                    I designed and built UniSearch to help students discover and compare over 1,500 universities worldwide, especially those applying to study abroad programs like Erasmus. 
-                    The platform integrates a dynamic search engine, personalized recommendation system, and real-time API health monitoring—all wrapped in a responsive, clean UI. 
-                    This project showcases my ability to connect frontend and backend systems using React/Vite and FastAPI, implement user-centric features, and deploy full-stack apps across Vercel and Render with proper CORS configuration.
-                </p>                  
-                <div class="research-tags">
-                    <span class="tag methodology">Full-Stack Development</span>
-                    <span class="tag">React / Vite</span>
-                    <span class="tag">FastAPI</span>
-                    <span class="tag">Tailwind CSS</span>
-                    <span class="tag">SQLite</span>
-                    <span class="tag">Deployed</span>
-                </div>
-            </div>
-
-            <div class="research-item">
-                <h3 class="research-title">
-                    <a href="behavioral-finance-gpt.html" target="_blank">Behavioral Finance GPT Assistant</a>
-                </h3>
-                <div class="research-meta">Conversational Tool • Behavioral Finance + LLM Integration • 2025</div>
-                <p class="research-description">
-                    I built the Behavioral Finance GPT Assistant to classify investors not only by how they see themselves, but by how their responses reveal hidden cognitive biases. 
-                    The assistant infers likely behavioral pitfalls—such as overconfidence, loss aversion, or inertia—then generates mapped investment plans tailored to each user’s profile. 
-                    It pairs language-based archetyping with structured portfolio recommendations, integrating live financial data to ground advice in current market conditions. 
-                    This project demonstrates how behavioral theory and real-world analytics can work together to deliver adaptive, bias-aware investment strategies through a conversational interface.
-                </p>
-                <div class="research-tags">
-                    <span class="tag methodology">Behavioral Design</span>
-                    <span class="tag">GPT Integration</span>
-                    <span class="tag">Conversational UI</span>
-                    <span class="tag">Behavioral Finance</span>
-                    <span class="tag">Investor Psychology</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title">Technical Competencies</h2>
-            
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Statistical Methods</h3>
-                    <ul class="skill-list">
-                        <li><span class="skill-level">Proficient:</span> Regression Analysis & Modeling</li>
-                        <li><span class="skill-level">Advanced:</span> Experimental Design & Implementation</li>
-                        <li><span class="skill-level">Intermediate:</span> Predictive Modeling</li>
-                        <li><span class="skill-level">Proficient:</span> Data Visualization & Reporting</li>
-                        <li><span class="skill-level">Intermediate:</span> Causal Inference Methods</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <ul class="skill-list">
-                        <li><span class="skill-level">Advanced:</span> R (statistical computing, data analysis)</li>
-                        <li><span class="skill-level">Intermediate:</span> Python (data science, experimental design)</li>
-                        <li><span class="skill-level">Intermediate:</span> SQL (database queries, data management)</li>
-                        <li><span class="skill-level">Intermediate:</span> HTML/JavaScript (web development, oTree)</li>
-                        <li><span class="skill-level">Proficient:</span> Excel (advanced modeling, analysis)</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Language Skills</h3>
-                    <ul class="skill-list">
-                        <li><span class="skill-level">Native:</span> English, Spanish, French</li>
-                        <li><span class="skill-level">Professional:</span> Portuguese</li>
-                        <li><span class="skill-level">Conversational:</span> Russian, German, Italian</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Research & Analysis</h3>
-                    <ul class="skill-list">
-                        <li><span class="skill-level">Advanced:</span> Experimental Design (oTree, Lab)</li>
-                        <li><span class="skill-level">Proficient:</span> Database Analysis & Management</li>
-                        <li><span class="skill-level">Advanced:</span> Behavioral Economics Research</li>
-                        <li><span class="skill-level">Proficient:</span> Policy Analysis & Translation</li>
-                        <li><span class="skill-level">Intermediate:</span> Financial Market Analysis</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="section">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            
-            <div class="cv-section">
-                <div class="cv-item">
-                    <div class="cv-item-title">Research Assistant – Macroeconomics for Climate Resilience</div>
-                    <div class="cv-item-meta">Columbia University (Supervisor: Jeffrey Sachs) • February 2026 - Present</div>
-                    <div class="cv-item-description">
-                        Supporting development of macroeconomics textbook for government officials in Small Island Developing States, 
-                        translating technical economic concepts into policy frameworks for decision-makers navigating climate resilience 
-                        and sustainable development trade-offs. Conducting background research synthesizing academic literature, policy 
-                        reports, and case studies into accessible educational content. Preparing empirical examples, figures, and tables 
-                        using R, Excel, and LaTeX, connecting abstract macro models to real-world policy interventions.
-                    </div>
-                </div>
     
-                <div class="cv-item">
-                    <div class="cv-item-title">Research Assistant – IPOs, Information Environment, and Cost of Capital</div>
-                    <div class="cv-item-meta">Columbia University (Supervisor: Ankit Bhutani) • January 2026 - Present</div>
-                    <div class="cv-item-description">
-                        Building automated cost of equity estimation models processing portfolios of 20+ firms using Compustat, CRSP, 
-                        and IBES datasets. Developing regression pipelines in R and Python that iterate to calibrate optimal parameters 
-                        based on Easton (2004) methodology. Cleaning, merging, and validating large-scale panel datasets across multiple 
-                        financial data sources, ensuring consistency and accuracy in high-dimensional empirical analysis.
-                    </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="section reveal">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-left">
+                    <span class="section-label">About</span>
+                    <h2 class="section-heading">Rigorous analysis.<br><em>Actionable insight.</em></h2>
                 </div>
-    
-                <div class="cv-item">
-                    <div class="cv-item-title">Teaching Assistant – Intermediate Macroeconomics</div>
-                    <div class="cv-item-meta">Columbia University Economics Department • January 2026 - Present</div>
-                    <div class="cv-item-description">
-                        Selected as TA for a 200-student intermediate macroeconomics course, supporting core instruction in growth, 
-                        business cycles, and dynamic macro models. Led weekly recitation sections and office hours, translating formal 
-                        models into intuitive economic reasoning and guiding students through applied problem-solving. Graded and 
-                        provided structured feedback on problem sets, balancing mathematical precision with economic interpretation.
-                    </div>
-                </div>
-    
-                <div class="cv-item">
-                    <div class="cv-item-title">Research Assistant – Decision-Making Under Uncertainty</div>
-                    <div class="cv-item-meta">Columbia University (Supervisor: Ricardo Pommer Muñoz) • February 2025 - October 2025</div>
-                    <div class="cv-item-description">
-                        Designed and programmed 2 incentive-compatible experiments in oTree with 100+ participants examining how 
-                        information framing and risk structures influence contract evaluation and choice behavior. Built probabilistic 
-                        models calibrated to historical data and automated R data pipelines for behavioral pattern analysis. Translated 
-                        experimental findings into insights on how information design affects decision quality in high-stakes contexts.
-                    </div>
-                </div>
-    
-                <div class="cv-item">
-                    <div class="cv-item-title">Strategy Advisor to the Ambassador to the United Nations</div>
-                    <div class="cv-item-meta">Permanent Mission of Costa Rica to the UN, New York • July 2025 - September 2025</div>
-                    <div class="cv-item-description">
-                        Delivered 5 strategic negotiation briefs analyzing voting patterns across 15+ delegations to support Ambassador 
-                        in bilateral meetings and multilateral positioning at ECOSOC and UN General Assembly sessions. Drafted 4 official 
-                        statements delivered at UN General Assembly meetings on disarmament, sustainability, and humanitarian issues. 
-                        Synthesized real-time multilateral negotiations into actionable recommendations for senior diplomats under tight deadlines.
-                    </div>
-                </div>
-                
-                <div class="cv-item">
-                    <div class="cv-item-title">Dual BA Representative</div>
-                    <div class="cv-item-meta">Columbia University Student Council • September 2024 - May 2025</div>
-                    <div class="cv-item-description">
-                        Launched peer mentorship program supporting 50+ international students navigating dual-degree academic systems, 
-                        securing administrative buy-in and organizing 5+ academic panels and community-building events. Developed proposals 
-                        to democratize research access through GS policy committee.
-                    </div>
-                </div>
-                
-                <div class="cv-item">
-                    <div class="cv-item-title">Migration Assistant Intern</div>
-                    <div class="cv-item-meta">MigrationAid Emergency Response Hostel, Budapest • May 2023 - August 2023</div>
-                    <div class="cv-item-description">
-                        Managed daily logistics for distributing 100 meals to Ukrainian refugees under resource constraints. 
-                        Designed and implemented "Free Supermarket" model to streamline equitable access to resources, 
-                        prioritizing dignity and personalization in humanitarian aid delivery.
-                    </div>
-                </div>
-                
-                <div class="cv-item">
-                    <div class="cv-item-title">Freelance Translator</div>
-                    <div class="cv-item-meta">UN-led Projects (UNICEF, UNODC) • October 2021 - March 2024</div>
-                    <div class="cv-item-description">
-                        Translated technical proposals and policy documents across English, Spanish, and French for vaccination 
-                        campaigns and pedagogic initiatives. Produced stakeholder-facing summaries to improve cross-linguistic 
-                        accessibility and operational clarity for international coordination.
+                <div class="about-right">
+                    <p>My work sits at the intersection of economics, behavioral science, and strategy. I'm drawn to hard problems — the kind where the first model is wrong, the data is messy, and the answer actually matters. I care about understanding why outcomes happen, not just describing them.</p>
+                    <p>I'm completing a dual degree at Columbia University and Sciences Po Paris in Economics and Political Philosophy, with a special concentration in Business Management at Columbia Business School — training that spans econometrics, experimental design, corporate finance, and strategic analysis across three countries and two intellectual traditions.</p>
+                    <p>Currently: synthesizing climate macroeconomics for policymakers under Jeffrey Sachs, building cost-of-equity estimation pipelines from large-scale financial data, and teaching intermediate macroeconomics to 200 students at Columbia.</p>
+                    <p class="about-closing">The throughline across all three is the same — <em>rigorous analysis applied to decisions that have real consequences.</em></p>
+                    <div class="about-tags">
+                        <span class="about-tag">Behavioral Economics</span>
+                        <span class="about-tag">Quantitative Analysis</span>
+                        <span class="about-tag">Experimental Design</span>
+                        <span class="about-tag">Strategy & Advisory</span>
+                        <span class="about-tag">Decision Science</span>
+                        <span class="about-tag">Applied Econometrics</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="education" class="section">
+    <!-- RESEARCH -->
+    <section id="research" class="section section--alt reveal">
         <div class="container">
-            <h2 class="section-title">Education</h2>
-            
-            <div class="cv-section">
-                <div class="cv-item">
-                    <div class="cv-item-title">Dual Bachelor of Arts, Economics and Political Philosophy</div>
-                    <div class="cv-item-meta">Columbia University & Sciences Po Paris • 2022–2026</div>
-                    <div class="cv-item-description">
-                        Highly selective dual degree program combining rigorous economics training with philosophical analysis 
-                        of political institutions. Dean's List at Columbia University, Cum Laude Honors at Sciences Po Paris. 
-                        Coursework includes Behavioral Economics, Financial Economics, and advanced quantitative methods.
+            <span class="section-label">Research</span>
+            <h2 class="section-heading">Applied Analysis</h2>
+            <div class="section-rule"></div>
+
+            <!-- Featured cards -->
+            <div class="project-grid">
+                <a href="anchoring-analysis.html" class="project-card">
+                    <div class="project-card-inner">
+                        <div class="project-card-label">Behavioral Economics · Columbia</div>
+                        <h3 class="project-card-title">Anchoring in Context: Sequential Evaluation & Decision Quality</h3>
+                        <p class="project-card-desc">Formal model of dynamic anchoring in sequential evaluations — examining how early information creates systematic bias in high-stakes screening decisions. Direct implications for hiring, investment committee design, and any multi-stage evaluation process.</p>
+                        <div class="project-card-tags">
+                            <span class="ptag ptag--accent">Decision Theory</span>
+                            <span class="ptag ptag--accent">Experimental Design</span>
+                            <span class="ptag">Choice Architecture</span>
+                            <span class="ptag">Theoretical Modeling</span>
+                        </div>
+                        <span class="project-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <a href="otree-climate-insurance.html" class="project-card">
+                    <div class="project-card-inner">
+                        <div class="project-card-label">Field Research · Columbia Economics</div>
+                        <h3 class="project-card-title">Market Unraveling in Climate Insurance</h3>
+                        <p class="project-card-desc">Designed and programmed three oTree experiments investigating insurance market failure under climate uncertainty. Built stochastic simulations calibrated to historical rainfall data for field research with Colombian smallholder farmers — linking behavioral lab methods to real policy design.</p>
+                        <div class="project-card-tags">
+                            <span class="ptag ptag--accent">oTree · Python</span>
+                            <span class="ptag ptag--accent">Field Experiment</span>
+                            <span class="ptag">Climate Economics</span>
+                            <span class="ptag">Policy Design</span>
+                        </div>
+                        <span class="project-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Compact list -->
+            <div class="research-list">
+                <div class="research-list-item">
+                    <div class="research-list-left">
+                        <h4>IPOs, Information Environment & Cost of Capital</h4>
+                        <p>Constructing firm-level cost of equity measures using Compustat, CRSP, and IBES. Implementing valuation-based and numerical estimation techniques from academic finance literature in reproducible R and Python pipelines.</p>
+                    </div>
+                    <div class="research-list-right">
+                        <span class="research-list-venue">Columbia · Supervisor: A. Bhutani</span>
+                        <span class="research-list-year">2026 – Present</span>
                     </div>
                 </div>
-                
-                <div class="cv-item">
-                    <div class="cv-item-title">Special Concentration in Business Management</div>
-                    <div class="cv-item-meta">Columbia Business School • 2025–2026</div>
-                    <div class="cv-item-description">
-                        Competitive undergraduate concentration providing graduate-level business education alongside liberal arts degree. Only 45 students admitted from both Junior and Sophomore classes. 
-                        Coursework includes Corporate Finance, Strategy Formulation, Marketing, and International Finance and Trade. 
-                        Integration of behavioral economics insights with business strategy and decision-making frameworks.
+                <div class="research-list-item">
+                    <div class="research-list-left">
+                        <h4>AI Misinformation & Civic Trust</h4>
+                        <p>Assessed institutional risks from AI-generated misinformation; produced policy recommendations on cross-platform governance and safeguards against information fragility for non-technical policymakers.</p>
+                    </div>
+                    <div class="research-list-right">
+                        <span class="research-list-venue">Sciences Po Paris</span>
+                        <span class="research-list-year">2023–24</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section reveal">
+        <div class="container">
+            <span class="section-label">Experience</span>
+            <h2 class="section-heading">Where I've Worked</h2>
+            <div class="section-rule"></div>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Feb 2026 – Present</div>
+                    <div class="timeline-content">
+                        <h3>Research Assistant — Macroeconomics for Climate Resilience</h3>
+                        <p class="timeline-org">Columbia University · Jeffrey Sachs</p>
+                        <p>Synthesizing macroeconomic literature and climate policy frameworks for a textbook targeting government officials in Small Island Developing States. Preparing empirical figures and analysis using R, Excel, and LaTeX; fact-checking quantitative content for non-specialist readers navigating complex policy trade-offs.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Jan 2026 – Present</div>
+                    <div class="timeline-content">
+                        <h3>Research Assistant — IPOs, Information & Cost of Capital</h3>
+                        <p class="timeline-org">Columbia University · Ankit Bhutani</p>
+                        <p>Building firm-level cost of equity measures from Compustat, CRSP, and IBES — implementing valuation-based estimation techniques from academic finance literature. Cleaning and validating large panel datasets; translating mathematical models into efficient, reproducible R and Python pipelines.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Jan 2026 – Present</div>
+                    <div class="timeline-content">
+                        <h3>Teaching Assistant — Intermediate Macroeconomics</h3>
+                        <p class="timeline-org">Columbia University Economics Department</p>
+                        <p>Selected TA for a 200-student core course. Leading weekly recitations and office hours; translating formal dynamic models into intuitive economic reasoning. Designing answer keys and rubrics to standardize evaluation while maintaining analytical rigor.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Jul – Sep 2025</div>
+                    <div class="timeline-content">
+                        <h3>Strategy Advisor to the Ambassador</h3>
+                        <p class="timeline-org">Permanent Mission of Costa Rica to the United Nations, New York</p>
+                        <p>Direct advisor to Ambassador Maritza Chan across ECOSOC sessions and UN committee proceedings. Synthesized negotiation dynamics across 15+ delegations into strategic briefs; identified coalition opportunities and recommended pathways in high-stakes diplomatic contexts. Drafted official statements delivered at the UN General Assembly on disarmament, sustainability, and humanitarian policy.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Feb – Oct 2025</div>
+                    <div class="timeline-content">
+                        <h3>Research Assistant — Decision-Making Under Uncertainty</h3>
+                        <p class="timeline-org">Columbia University · Ricardo Pommer Muñoz</p>
+                        <p>Designed incentive-compatible oTree experiments examining how information framing and payoff structures shape contract evaluation. Built stochastic simulations calibrated to historical rainfall data; developed R pipelines for data validation, diagnostics, and econometric preparation.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section section--alt reveal">
+        <div class="container">
+            <span class="section-label">Projects</span>
+            <h2 class="section-heading">Built & Shipped</h2>
+            <div class="section-rule"></div>
+            <div class="project-grid project-grid--bento">
+                <a href="unisearch-project.html" class="project-card bento-wide">
+                    <div class="project-card-inner">
+                        <div class="project-card-label">Full-Stack Application · 2025</div>
+                        <h3 class="project-card-title">UniSearch</h3>
+                        <p class="project-card-subtitle">Global University Discovery Platform</p>
+                        <p class="project-card-desc">Full-stack application helping students discover and compare 1,500+ universities worldwide. Implements dynamic search, preference-based ranking algorithms, and personalized filtering — deployed on Vercel and Render with iterative improvements based on real user behavior.</p>
+                        <div class="project-card-tags">
+                            <span class="ptag ptag--accent">React / Vite</span>
+                            <span class="ptag ptag--accent">FastAPI</span>
+                            <span class="ptag">SQLite</span>
+                            <span class="ptag">Tailwind</span>
+                            <span class="ptag">Deployed</span>
+                        </div>
+                        <span class="project-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <a href="behavioral-finance-gpt.html" class="project-card bento-narrow">
+                    <div class="project-card-inner">
+                        <div class="project-card-label">Decision Tool · 2025</div>
+                        <h3 class="project-card-title">FinSelf Coach</h3>
+                        <p class="project-card-subtitle">Behavioral Finance Assistant</p>
+                        <p class="project-card-desc">GPT-powered tool identifying investor cognitive biases and generating context-dependent strategy nudges. Models salience and reference effects to improve decision quality under uncertainty.</p>
+                        <div class="project-card-tags">
+                            <span class="ptag ptag--accent">GPT API</span>
+                            <span class="ptag">Behavioral Finance</span>
+                            <span class="ptag">Conversational UI</span>
+                        </div>
+                        <span class="project-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section section--edu reveal">
+        <div class="container">
+            <span class="section-label">Education</span>
+            <h2 class="section-heading">Academic Formation</h2>
+            <div class="section-rule"></div>
+            <div class="edu-row">
+                <div class="edu-card edu-card--primary">
+                    <div class="edu-institution">Columbia University</div>
+                    <p class="edu-degree">BA, Economics — GPA: 4.03/4.00</p>
+                    <p class="edu-years">New York · 2022 – 2026</p>
+                    <p class="edu-honors" style="margin-top:0.6rem">GS Honors Society · Dean's List · Ilse S. Mintz Scholarship</p>
+                    <div class="edu-courses" style="margin-top:0.75rem; margin-bottom:1.5rem">
+                        <span class="edu-course">Econometrics</span>
+                        <span class="edu-course">Behavioral Economics</span>
+                        <span class="edu-course">Game Theory</span>
+                        <span class="edu-course">Research Seminar</span>
+                        <span class="edu-course">Linear Algebra</span>
+                        <span class="edu-course">Statistics</span>
+                    </div>
+                    <div class="edu-concentration">
+                        <div class="edu-concentration-label">Special Concentration · Columbia Business School</div>
+                        <p class="edu-concentration-name">Business Management</p>
+                        <p class="edu-concentration-detail">45 students admitted · Corporate Finance (A+) · Strategy Formulation · Marketing Management</p>
+                    </div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-institution">Sciences Po Paris</div>
+                    <p class="edu-degree">BA, Political Philosophy — Cum Laude</p>
+                    <p class="edu-years">Reims, France · 2022 – 2026</p>
+                    <div class="edu-divider"></div>
+                    <p class="edu-sub-label">Dual Degree</p>
+                    <p class="edu-sub">Highly selective joint degree with Columbia University,</p>
+                    <div class="edu-divider"></div>
+                    <p class="edu-honors">Cum Laude (top 10%)</p>
+                    <div class="edu-courses">
+                        <span class="edu-course">Political Economy</span>
+                        <span class="edu-course">Research Methods</span>
+                        <span class="edu-course">Quantitative Sociology</span>
+                        <span class="edu-course">AI & Governance</span>
+                        <span class="edu-course">European Institutions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section reveal">
+        <div class="container">
+            <span class="section-label">Capabilities</span>
+            <h2 class="section-heading">Technical Skills</h2>
+            <div class="section-rule"></div>
+            <div class="skills-mosaic">
+                <div class="skill-block">
+                    <h4>Analytics & Programming</h4>
+                    <div class="skill-pills">
+                        <span class="skill-pill skill-pill--strong">Python</span>
+                        <span class="skill-pill skill-pill--strong">R</span>
+                        <span class="skill-pill">SQL</span>
+                        <span class="skill-pill">Stata</span>
+                        <span class="skill-pill skill-pill--strong">Excel</span>
+                        <span class="skill-pill">oTree</span>
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">LaTeX</span>
+                    </div>
+                </div>
+                <div class="skill-block">
+                    <h4>Research Methods</h4>
+                    <div class="skill-pills">
+                        <span class="skill-pill skill-pill--strong">Experimental Design</span>
+                        <span class="skill-pill skill-pill--strong">Econometrics</span>
+                        <span class="skill-pill">Causal Inference</span>
+                        <span class="skill-pill">Predictive Modeling</span>
+                        <span class="skill-pill">Policy Analysis</span>
+                        <span class="skill-pill">Data Visualization</span>
+                    </div>
+                </div>
+                <div class="skill-block">
+                    <h4>Web & Deployment</h4>
+                    <div class="skill-pills">
+                        <span class="skill-pill skill-pill--strong">React</span>
+                        <span class="skill-pill">FastAPI</span>
+                        <span class="skill-pill">HTML / CSS / JS</span>
+                        <span class="skill-pill">Tailwind</span>
+                        <span class="skill-pill">Vercel</span>
+                        <span class="skill-pill">Render</span>
+                    </div>
+                </div>
+                <div class="skill-block">
+                    <h4>Languages</h4>
+                    <div class="skill-pills">
+                        <span class="skill-pill skill-pill--native">English <small>Native</small></span>
+                        <span class="skill-pill skill-pill--native">Spanish <small>Native</small></span>
+                        <span class="skill-pill skill-pill--native">French <small>Native</small></span>
+                        <span class="skill-pill skill-pill--strong">Portuguese <small>Fluent</small></span>
+                        <span class="skill-pill">Russian</span>
+                        <span class="skill-pill">German</span>
+                        <span class="skill-pill">Italian</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- WRITING -->
+    <section id="writing" class="section reveal">
+        <div class="container">
+            <span class="section-label">Writing</span>
+            <h2 class="section-heading">Research Notes</h2>
+            <p class="writing-intro">A line of thinking worth writing down. Sometimes an R session, sometimes a model, sometimes just a question I can't stop turning over. On behavioral economics, markets, and how decisions actually get made.</p>
+            <div class="section-rule"></div>
+            <div class="writing-grid">
+                <article class="writing-card">
+                    <div class="writing-card-date">Coming Soon</div>
+                    <h3>Why Your Hiring Process Is Biased by Design</h3>
+                    <p>On anchoring effects in sequential evaluation — and what behavioral science says about building fairer, more accurate screening systems.</p>
+                    <span class="writing-card-tag">Behavioral Economics</span>
+                </article>
+                <article class="writing-card">
+                    <div class="writing-card-date">Coming Soon</div>
+                    <h3>Thinking in Three Languages</h3>
+                    <p>How switching languages reshapes the way I frame risk, morality, and strategy — and what the research actually says about it.</p>
+                    <span class="writing-card-tag">Language & Cognition</span>
+                </article>
+                <article class="writing-card">
+                    <div class="writing-card-date">In Progress</div>
+                    <h3>LatAm Markets: A Forecasting Exercise</h3>
+                    <p>Working through macroeconomic signals, political risk, and capital flow dynamics across Latin America using R. What the models say, and where I disagree with them.</p>
+                    <span class="writing-card-tag">Macro · Markets</span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section--alt reveal">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-left">
+                    <span class="section-label">Contact</span>
+                    <h2 class="section-heading">Let's connect.</h2>
+                    <p class="contact-sub">Open to research, analyst, and strategy roles — particularly at the intersection of applied decision-making, data, and strategy. Always glad to talk about interesting problems.</p>
+                </div>
+                <div class="contact-right">
+                    <a href="mailto:jdb2250@columbia.edu" class="contact-link">
+                        <div class="contact-link-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-link-text">
+                            <div class="contact-link-label">Email</div>
+                            <div class="contact-link-value">jdb2250@columbia.edu</div>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jorge-d-ballestero-94117328a/" target="_blank" rel="noopener" class="contact-link">
+                        <div class="contact-link-icon"><i class="fab fa-linkedin"></i></div>
+                        <div class="contact-link-text">
+                            <div class="contact-link-label">LinkedIn</div>
+                            <div class="contact-link-value">Jorge D. Ballestero</div>
+                        </div>
+                    </a>
+                    <a href="https://github.com/ballestj" target="_blank" rel="noopener" class="contact-link">
+                        <div class="contact-link-icon"><i class="fab fa-github"></i></div>
+                        <div class="contact-link-text">
+                            <div class="contact-link-label">GitHub</div>
+                            <div class="contact-link-value">ballestj</div>
+                        </div>
+                    </a>
+                    <a href="pdf/JB_CV.pdf" download class="contact-link">
+                        <div class="contact-link-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="contact-link-text">
+                            <div class="contact-link-label">Curriculum Vitae</div>
+                            <div class="contact-link-value">Download PDF</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Jorge Ballestero. All rights reserved.</p>
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <span class="footer-name">Jorge D. Ballestero</span>
+                <span class="footer-copy">&copy; 2026 · New York</span>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:jdb2250@columbia.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/jorge-d-ballestero-94117328a/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ballestj" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
         </div>
     </footer>
 
-    <script>
-        // Simple navigation highlighting
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-links a');
-            const sections = document.querySelectorAll('.section');
-
-            function highlightNavigation() {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (scrollY >= (sectionTop - 200)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + current) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', highlightNavigation);
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
