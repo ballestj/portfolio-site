@@ -1531,3 +1531,26 @@
            text-align: center;
        }
    }
+
+   .nav-wordmark {
+    display: flex;
+    align-items: center;
+}
+
+.nav-signature {
+    height: 90px;
+    width: auto;
+    display: block;
+    opacity: 0.85;
+    transition: opacity 0.25s ease;
+    margin-right: 1rem;
+    margin-top: 25px;
+}
+
+.nav-signature:hover {
+    opacity: 1;
+}
+
+[data-theme="dark"] .nav-signature {
+    filter: invert(1);
+}
