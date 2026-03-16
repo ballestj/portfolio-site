@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Decision Profile — Jorge D. Ballestero</title>
+
+    <style>
+        :root {
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Instrument Sans', -apple-system, sans-serif;
+            --font-mono: 'DM Mono', monospace;
+            --bg: #F8F7F4;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F0EEE9;
+            --text-primary: #16161A;
+            --text-secondary: #52524F;
+            --text-tertiary: #8A8A84;
+            --accent: #9C7C38;
+            --accent-soft: rgba(156, 124, 56, 0.07);
+            --accent-medium: rgba(156, 124, 56, 0.13);
+            --border: rgba(22, 22, 26, 0.08);
+            --border-strong: rgba(22, 22, 26, 0.15);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: color-mix(in srgb, var(--bg) 94%, transparent);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2.5rem;
+        }
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-wordmark {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .nav-wordmark span { color: var(--accent); }
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+        .nav-back:hover { color: var(--accent); }
+        .nav-back i { font-size: 0.6rem; }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2.5rem 5rem;
+        }
+
+        .page-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+        .page-label::after {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+        }
+        .page-meta {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--text-tertiary);
+            margin-bottom: 2.5rem;
+        }
+
+        .rule {
+            width: 32px;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.4;
+            margin-bottom: 2.5rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 2rem;
+        }
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.06em;
+            color: var(--text-tertiary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 2px;
+        }
+        .tag--accent {
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-color: var(--accent-medium);
+        }
+
+        .abstract {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 2px solid var(--accent);
+            border-radius: 4px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .abstract-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        .abstract p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 0.85rem;
+        }
+        .abstract p:last-child { margin-bottom: 0; }
+
+        .preview-img {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .embed-wrapper {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            background: var(--bg-secondary);
+        }
+        .embed-wrapper iframe {
+            width: 100%;
+            height: 680px;
+            border: none;
+            display: block;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid var(--border-strong);
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+        .btn--primary {
+            background: var(--text-primary);
+            color: var(--bg);
+            border-color: var(--text-primary);
+        }
+        .btn--primary:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .btn i { font-size: 0.75rem; }
+
+        .page-footer {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .footer-back {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.25s ease;
+        }
+        .footer-back:hover { color: var(--accent); }
+
+        @media (max-width: 600px) {
+            .page { padding: 5rem 1.5rem 4rem; }
+            .nav { padding: 0 1.5rem; }
+            .actions { flex-direction: column; }
+            .btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-wordmark">Jorge<span>.</span></a>
+            <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to site</a>
+        </div>
+    </nav>
+
+    <main class="page">
+        <p class="page-label">Behavioral Measurement · Columbia University</p>
+        <h1 class="page-title">Measuring Economic Preferences at Scale</h1>
+        <p class="page-meta">GPS Adaptation · Experimental Design · March 2026</p>
+        <div class="rule"></div>
+
+        <div class="tags">
+            <span class="tag tag--accent">GPS Adaptation</span>
+            <span class="tag tag--accent">Preference Elicitation</span>
+            <span class="tag">Experimental Design</span>
+            <span class="tag">Archetype Classification</span>
+            <span class="tag">Behavioral Economics</span>
+        </div>
+
+        <div class="abstract">
+            <div class="abstract-label">Overview</div>
+            <p>A web-deployed instrument for measuring the six core economic preferences from the Global Preference Survey (Falk et al., 2018): patience, risk tolerance, positive and negative reciprocity, altruism, and trust. The tool adapts GPS-validated elicitation methods — including a staircase time preference task, a Holt-Laury lottery table, and a dictator game — for asynchronous self-administered completion. Individual scores are benchmarked against GPS empirical distributions from 80,337 respondents across 76 countries, then mapped onto eight discrete archetypes defined by risk-patience, prosociality, and justice axes. A between-subjects experimental design for four cognitive biases runs in parallel as the response dataset accumulates.</p>
+        </div>
+
+        <img class="preview-img" src="assets/decision_profile.png" alt="Decision Profile instrument" />
+
+        <div class="embed-wrapper">
+            <iframe src="https://decision-profile.vercel.app" title="Decision Profile Instrument"></iframe>
+        </div>
+
+        <div class="actions">
+            <a href="https://decision-profile.vercel.app" target="_blank" rel="noopener" class="btn btn--primary"><i class="fas fa-flask"></i> Try the Instrument</a>
+            <a href="https://github.com/ballestj/decision-profile" target="_blank" rel="noopener" class="btn"><i class="fab fa-github"></i> View on GitHub</a>
+            <a href="pdf/Decision_Profile_writing_sample.pdf" download class="btn"><i class="fas fa-file-alt"></i> Download Paper (PDF)</a>
+        </div>
+
+        <div class="page-footer">
+            <a href="index.html" class="footer-back"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+        </div>
+    </main>
+
+</body>
+</html>

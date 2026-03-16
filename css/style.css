@@ -108,6 +108,31 @@
    a { color: inherit; text-decoration: none; }
    img { max-width: 100%; display: block; }
    
+   /* ── Inline hyperlinks in body text ── */
+   .about-right a,
+   .timeline-content a,
+   .timeline-org a,
+   .research-list-venue a,
+   .edu-institution a,
+   .edu-concentration-label a,
+   .edu-sub a {
+       color: var(--accent);
+       text-decoration: none;
+       border-bottom: 1px solid var(--accent-medium);
+       transition: border-color 0.2s ease, color 0.2s ease;
+   }
+
+   .about-right a:hover,
+   .timeline-content a:hover,
+   .timeline-org a:hover,
+   .research-list-venue a:hover,
+   .edu-institution a:hover,
+   .edu-concentration-label a:hover,
+   .edu-sub a:hover {
+       color: var(--accent-light);
+       border-bottom-color: var(--accent);
+   }
+   
    .container {
        max-width: 1120px;
        margin: 0 auto;
@@ -202,6 +227,7 @@
        text-transform: uppercase;
        transition: color 0.25s ease;
        position: relative;
+       border-bottom: none !important;
    }
    
    .nav-links a::after {
@@ -694,6 +720,31 @@
    
    .project-grid--bento {
        grid-template-columns: 1.55fr 1fr;
+   }
+
+   /* Featured row: two equal prominent cards */
+   .project-grid--featured {
+       grid-template-columns: 1fr 1fr;
+       gap: 1.25rem;
+   }
+
+   /* Supporting row: two equal smaller cards */
+   .project-grid--supporting {
+       grid-template-columns: 1fr 1fr;
+       gap: 1.25rem;
+   }
+
+   /* Supporting cards are slightly more compact */
+   .project-grid--supporting .project-card-inner {
+       padding: 1.6rem 1.75rem;
+   }
+
+   .project-grid--supporting .project-card-title {
+       font-size: 1.2rem;
+   }
+
+   .project-grid--supporting .project-card-desc {
+       font-size: 0.83rem;
    }
    
    .project-card {
@@ -1464,7 +1515,9 @@
        }
    
        .project-grid,
-       .project-grid--bento {
+       .project-grid--bento,
+       .project-grid--featured,
+       .project-grid--supporting {
            grid-template-columns: 1fr;
        }
    
