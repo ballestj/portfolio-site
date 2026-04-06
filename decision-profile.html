@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -27,6 +27,20 @@
             --border-strong: rgba(22, 22, 26, 0.15);
         }
 
+        [data-theme="dark"] {
+            --bg: #0D0D0C;
+            --bg-card: #161614;
+            --bg-secondary: #1E1E1B;
+            --text-primary: #EEECEA;
+            --text-secondary: #9A9A92;
+            --text-tertiary: #64645E;
+            --accent: #C4A46B;
+            --accent-soft: rgba(196, 164, 107, 0.07);
+            --accent-medium: rgba(196, 164, 107, 0.13);
+            --border: rgba(238, 236, 234, 0.06);
+            --border-strong: rgba(238, 236, 234, 0.11);
+        }
+
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -36,6 +50,7 @@
             line-height: 1.7;
             font-size: 15px;
             -webkit-font-smoothing: antialiased;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
         .nav {
@@ -46,6 +61,7 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding: 0 2.5rem;
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
         .nav-inner {
             max-width: 900px;
@@ -56,13 +72,25 @@
             justify-content: space-between;
         }
         .nav-wordmark {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--text-primary);
+            display: flex;
+            align-items: center;
             text-decoration: none;
         }
-        .nav-wordmark span { color: var(--accent); }
+        .nav-signature {
+            height: 90px;
+            width: auto;
+            display: block;
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+            margin-top: 25px;
+        }
+        .nav-signature:hover { opacity: 1; }
+        [data-theme="dark"] .nav-signature { filter: invert(1); }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
         .nav-back {
             display: flex;
             align-items: center;
@@ -77,6 +105,25 @@
         }
         .nav-back:hover { color: var(--accent); }
         .nav-back i { font-size: 0.6rem; }
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--border-strong);
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+        }
+        .theme-btn:hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+        .theme-icon { width: 14px; height: 14px; stroke-linecap: round; stroke-linejoin: round; }
+        [data-theme="light"] .theme-icon.sun { display: none; }
+        [data-theme="light"] .theme-icon.moon { display: block; }
+        [data-theme="dark"] .theme-icon.sun { display: block; }
+        [data-theme="dark"] .theme-icon.moon { display: none; }
 
         .page {
             max-width: 900px;
@@ -266,8 +313,16 @@
 
     <nav class="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-wordmark">Jorge<span>.</span></a>
-            <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to site</a>
+            <a href="index.html" class="nav-wordmark">
+                <img src="assets/signature.png" alt="Jorge Ballestero" class="nav-signature">
+            </a>
+            <div class="nav-right">
+                <button class="theme-btn" id="theme-btn" aria-label="Toggle dark mode">
+                    <svg class="theme-icon moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="theme-icon sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+                <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to site</a>
+            </div>
         </div>
     </nav>
 
@@ -307,5 +362,17 @@
         </div>
     </main>
 
+    <script>
+        (function () {
+            var html = document.documentElement;
+            var saved = localStorage.getItem('theme');
+            if (saved) html.setAttribute('data-theme', saved);
+            document.getElementById('theme-btn').addEventListener('click', function () {
+                var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+            });
+        })();
+    </script>
 </body>
 </html>

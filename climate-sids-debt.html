@@ -7,8 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>LatAm Market Predictor — Jorge D. Ballestero</title>
-
+    <title>Climate Vulnerability & Sovereign Debt — Jorge D. Ballestero</title>
     <style>
         :root {
             --font-display: 'Cormorant Garamond', Georgia, serif;
@@ -26,7 +25,6 @@
             --border: rgba(22, 22, 26, 0.08);
             --border-strong: rgba(22, 22, 26, 0.15);
         }
-
         [data-theme="dark"] {
             --bg: #0D0D0C;
             --bg-card: #161614;
@@ -40,9 +38,7 @@
             --border: rgba(238, 236, 234, 0.06);
             --border-strong: rgba(238, 236, 234, 0.11);
         }
-
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: var(--font-body);
             background: var(--bg);
@@ -52,7 +48,6 @@
             -webkit-font-smoothing: antialiased;
             transition: background 0.4s ease, color 0.4s ease;
         }
-
         .nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -124,13 +119,7 @@
         [data-theme="light"] .theme-icon.moon { display: block; }
         [data-theme="dark"] .theme-icon.sun { display: block; }
         [data-theme="dark"] .theme-icon.moon { display: none; }
-
-        .page {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 6rem 2.5rem 5rem;
-        }
-
+        .page { max-width: 900px; margin: 0 auto; padding: 6rem 2.5rem 5rem; }
         .page-label {
             font-family: var(--font-mono);
             font-size: 0.65rem;
@@ -142,14 +131,7 @@
             gap: 0.6rem;
             margin-bottom: 1rem;
         }
-        .page-label::after {
-            content: '';
-            display: block;
-            width: 20px;
-            height: 1px;
-            background: var(--accent);
-            opacity: 0.5;
-        }
+        .page-label::after { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); opacity: 0.5; }
         .page-title {
             font-family: var(--font-display);
             font-size: clamp(2rem, 4vw, 3rem);
@@ -159,148 +141,31 @@
             color: var(--text-primary);
             margin-bottom: 0.6rem;
         }
-        .page-meta {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.08em;
-            color: var(--text-tertiary);
-            margin-bottom: 2.5rem;
-        }
-
-        .rule {
-            width: 32px;
-            height: 1px;
-            background: var(--accent);
-            opacity: 0.4;
-            margin-bottom: 2.5rem;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 2rem;
-        }
-        .tag {
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.06em;
-            color: var(--text-tertiary);
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 4px 10px;
-            border-radius: 2px;
-        }
-        .tag--accent {
-            color: var(--accent);
-            background: var(--accent-soft);
-            border-color: var(--accent-medium);
-        }
-
-        .abstract {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-left: 2px solid var(--accent);
-            border-radius: 4px;
-            padding: 1.75rem 2rem;
-            margin-bottom: 2.5rem;
-        }
-        .abstract-label {
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-        .abstract p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-weight: 300;
-            margin-bottom: 0.85rem;
-        }
+        .page-meta { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; color: var(--text-tertiary); margin-bottom: 2.5rem; }
+        .rule { width: 32px; height: 1px; background: var(--accent); opacity: 0.4; margin-bottom: 2.5rem; }
+        .abstract { background: var(--bg-card); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: 4px; padding: 1.75rem 2rem; margin-bottom: 2.5rem; }
+        .abstract-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+        .abstract p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; font-weight: 300; margin-bottom: 0.85rem; }
         .abstract p:last-child { margin-bottom: 0; }
-
-        .preview-img {
-            width: 100%;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            margin-bottom: 2rem;
-            display: block;
-        }
-
-        .embed-wrapper {
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            background: var(--bg-secondary);
-        }
-        .embed-wrapper iframe {
-            width: 100%;
-            height: 680px;
-            border: none;
-            display: block;
-        }
-
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 3rem;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: var(--font-body);
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            border: 1px solid var(--border-strong);
-            color: var(--text-primary);
-            background: var(--bg-card);
-        }
-        .btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
-        }
-        .btn--primary {
-            background: var(--text-primary);
-            color: var(--bg);
-            border-color: var(--text-primary);
-        }
-        .btn--primary:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
-        }
+        .finding { background: var(--accent-soft); border: 1px solid var(--accent-medium); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+        .finding-icon { color: var(--accent); font-size: 0.85rem; margin-top: 0.15rem; flex-shrink: 0; }
+        .finding-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; font-weight: 300; }
+        .finding-text strong { color: var(--text-primary); font-weight: 600; }
+        .embed-wrapper { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 2rem; background: var(--bg-secondary); }
+        .embed-wrapper iframe { width: 100%; height: 680px; border: none; display: block; }
+        .embed-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 0.65rem; }
+        .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.02em; padding: 10px 20px; border-radius: 4px; text-decoration: none; transition: all 0.25s ease; border: 1px solid var(--border-strong); color: var(--text-primary); background: var(--bg-card); }
+        .btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+        .btn--primary { background: var(--text-primary); color: var(--bg); border-color: var(--text-primary); }
+        .btn--primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
         .btn i { font-size: 0.75rem; }
-
-        .page-footer {
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-        }
-        .footer-back {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.25s ease;
-        }
+        .page-footer { padding-top: 2rem; border-top: 1px solid var(--border); }
+        .footer-back { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: color 0.25s ease; }
         .footer-back:hover { color: var(--accent); }
-
+        .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
+        .tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--text-tertiary); background: var(--bg-secondary); border: 1px solid var(--border); padding: 4px 10px; border-radius: 2px; }
+        .tag--accent { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-medium); }
         @media (max-width: 600px) {
             .page { padding: 5rem 1.5rem 4rem; }
             .nav { padding: 0 1.5rem; }
@@ -327,34 +192,45 @@
     </nav>
 
     <main class="page">
-        <p class="page-label">Quantitative Finance · Columbia University</p>
-        <h1 class="page-title">News Sentiment and Emerging Market Returns</h1>
-        <p class="page-meta">Python · NLP · Causal Inference · February 2026</p>
+        <p class="page-label">Econometrics · Columbia Senior Seminar</p>
+        <h1 class="page-title">Climate Vulnerability and Sovereign Debt Accumulation</h1>
+        <p class="page-meta">Panel Cointegration · SIDS · Panel VECM · R · Spring 2026</p>
         <div class="rule"></div>
 
         <div class="tags">
-            <span class="tag tag--accent">Python</span>
-            <span class="tag tag--accent">Causal Inference</span>
-            <span class="tag">NLP / GDELT</span>
-            <span class="tag">Gradient Boosting</span>
-            <span class="tag">Emerging Markets</span>
-            <span class="tag">LatAm</span>
+            <span class="tag tag--accent">Panel VECM</span>
+            <span class="tag tag--accent">Cointegration</span>
+            <span class="tag">Climate Economics</span>
+            <span class="tag">Sovereign Debt</span>
+            <span class="tag">SIDS</span>
+            <span class="tag">Applied Econometrics</span>
+            <span class="tag">Policy Analysis</span>
+            <span class="tag">R</span>
+        </div>
+
+        <div class="finding">
+            <i class="fas fa-chart-line finding-icon"></i>
+            <div class="finding-text">
+                <strong>Key finding:</strong> A one-unit increase in the ND-GAIN vulnerability score is associated with approximately <strong>105 percentage points more sovereign debt</strong> in the long run — independently of income, fiscal policy, and global shock regimes. The result is stable across four nested specifications and survives all robustness checks.
+            </div>
         </div>
 
         <div class="abstract">
-            <div class="abstract-label">Overview</div>
-            <p>I investigate whether media sentiment extracted from 18,089 English-language financial news articles predicts excess returns on the iShares Latin America 40 ETF (ILF) across Brazil, Mexico, Argentina, Chile, and Colombia from 2022 to 2026. After stripping global factor exposure via OLS residualization, I estimate average treatment effects with backdoor adjustment and placebo testing. A gradient boosting classifier achieves 52.7% directional accuracy out-of-sample. Two patterns survive causal scrutiny: neutral Brazilian central bank coverage and negative Colombian protest coverage, both associated with positive ILF residuals — suggesting LatAm news carries incremental information beyond global factors, though the predictable component is modest.</p>
+            <div class="abstract-label">Abstract</div>
+            <p>I test whether structural climate vulnerability has a long-run cointegrating relationship with sovereign debt accumulation across 27 Small Island Developing States over 2000–2023. Using a panel Vector Error Correction Model, I find that a one-unit increase in the ND-GAIN vulnerability score is associated with approximately 105 percentage points more sovereign debt in the long run, independently of income, fiscal policy, and global shock regimes.</p>
+            <p>The error correction is asymmetric: debt adjusts toward its vulnerability-implied equilibrium at 16% per year while vulnerability adjusts upward — a ratchet dynamic consistent with the structural constraints on SIDS debt management. Regional heterogeneity confirms the mechanism: the relationship is strongest where structural exposure is most severe, and weakest in Pacific SIDS where grant-based financing partially decouples debt from vulnerability.</p>
+            <p>These findings provide direct empirical support for the UN Multidimensional Vulnerability Index (Resolution A/78/L.98, August 2024): if vulnerability drives long-run debt independently of income, income-based eligibility criteria systematically exclude the countries most in need.</p>
         </div>
 
-        <img class="preview-img" src="assets/latam.png" alt="LatAm Signal Terminal dashboard" />
-
+        <div class="embed-label">Paper</div>
         <div class="embed-wrapper">
-            <iframe src="https://latam-market-predictor.onrender.com" title="LatAm Market Predictor Dashboard"></iframe>
+            <iframe src="pdf/Ballestero_Climate_Spreads.pdf" title="Climate Vulnerability and Sovereign Debt — Full Paper"></iframe>
         </div>
 
         <div class="actions">
-            <a href="https://latam-market-predictor.onrender.com" target="_blank" rel="noopener" class="btn btn--primary"><i class="fas fa-chart-line"></i> Visit Live Dashboard</a>
-            <a href="pdf/JB_LatAm_WritingSample.pdf" download class="btn"><i class="fas fa-file-alt"></i> Download Paper (PDF)</a>
+            <a href="pdf/Ballestero_Climate_Spreads.pdf" download class="btn btn--primary"><i class="fas fa-file-alt"></i> Download Paper (PDF)</a>
+            <a href="pdf/Ballestero_Climate_Spreads_Pres.pdf" download class="btn"><i class="fas fa-chalkboard"></i> Download Slides (PDF)</a>
+            <a href="https://github.com/ballestj/climate-sids-debt" target="_blank" rel="noopener" class="btn"><i class="fab fa-github"></i> View on GitHub</a>
         </div>
 
         <div class="page-footer">
