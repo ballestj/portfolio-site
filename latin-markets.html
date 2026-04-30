@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>LatAm Market Predictor — Jorge D. Ballestero</title>
+
+    <style>
+        :root {
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Instrument Sans', -apple-system, sans-serif;
+            --font-mono: 'DM Mono', monospace;
+            --bg: #F8F7F4;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F0EEE9;
+            --text-primary: #16161A;
+            --text-secondary: #52524F;
+            --text-tertiary: #8A8A84;
+            --accent: #9C7C38;
+            --accent-soft: rgba(156, 124, 56, 0.07);
+            --accent-medium: rgba(156, 124, 56, 0.13);
+            --border: rgba(22, 22, 26, 0.08);
+            --border-strong: rgba(22, 22, 26, 0.15);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0D0D0C;
+            --bg-card: #161614;
+            --bg-secondary: #1E1E1B;
+            --text-primary: #EEECEA;
+            --text-secondary: #9A9A92;
+            --text-tertiary: #64645E;
+            --accent: #C4A46B;
+            --accent-soft: rgba(196, 164, 107, 0.07);
+            --accent-medium: rgba(196, 164, 107, 0.13);
+            --border: rgba(238, 236, 234, 0.06);
+            --border-strong: rgba(238, 236, 234, 0.11);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: color-mix(in srgb, var(--bg) 94%, transparent);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2.5rem;
+            transition: background 0.4s ease, border-color 0.4s ease;
+        }
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-wordmark {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-signature {
+            height: 90px;
+            width: auto;
+            display: block;
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+            margin-top: 25px;
+        }
+        .nav-signature:hover { opacity: 1; }
+        [data-theme="dark"] .nav-signature { filter: invert(1); }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+        .nav-back:hover { color: var(--accent); }
+        .nav-back i { font-size: 0.6rem; }
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--border-strong);
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+        }
+        .theme-btn:hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+        .theme-icon { width: 14px; height: 14px; stroke-linecap: round; stroke-linejoin: round; }
+        [data-theme="light"] .theme-icon.sun { display: none; }
+        [data-theme="light"] .theme-icon.moon { display: block; }
+        [data-theme="dark"] .theme-icon.sun { display: block; }
+        [data-theme="dark"] .theme-icon.moon { display: none; }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2.5rem 5rem;
+        }
+
+        .page-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+        .page-label::after {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+        }
+        .page-meta {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--text-tertiary);
+            margin-bottom: 2.5rem;
+        }
+
+        .rule {
+            width: 32px;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.4;
+            margin-bottom: 2.5rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 2rem;
+        }
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.06em;
+            color: var(--text-tertiary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 2px;
+        }
+        .tag--accent {
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-color: var(--accent-medium);
+        }
+
+        .abstract {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 2px solid var(--accent);
+            border-radius: 4px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .abstract-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        .abstract p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 0.85rem;
+        }
+        .abstract p:last-child { margin-bottom: 0; }
+
+        .preview-img {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .embed-wrapper {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            background: var(--bg-secondary);
+        }
+        .embed-wrapper iframe {
+            width: 100%;
+            height: 680px;
+            border: none;
+            display: block;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid var(--border-strong);
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+        .btn--primary {
+            background: var(--text-primary);
+            color: var(--bg);
+            border-color: var(--text-primary);
+        }
+        .btn--primary:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .btn i { font-size: 0.75rem; }
+
+        .page-footer {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .footer-back {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.25s ease;
+        }
+        .footer-back:hover { color: var(--accent); }
+
+        @media (max-width: 600px) {
+            .page { padding: 5rem 1.5rem 4rem; }
+            .nav { padding: 0 1.5rem; }
+            .actions { flex-direction: column; }
+            .btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-wordmark">
+                <img src="assets/signature.png" alt="Jorge Ballestero" class="nav-signature">
+            </a>
+            <div class="nav-right">
+                <button class="theme-btn" id="theme-btn" aria-label="Toggle dark mode">
+                    <svg class="theme-icon moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="theme-icon sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+                <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to site</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page">
+        <p class="page-label">Quantitative Finance · Columbia University</p>
+        <h1 class="page-title">News Sentiment and Emerging Market Returns</h1>
+        <p class="page-meta">Python · NLP · Causal Inference · February 2026</p>
+        <div class="rule"></div>
+
+        <div class="tags">
+            <span class="tag tag--accent">Python</span>
+            <span class="tag tag--accent">Causal Inference</span>
+            <span class="tag">NLP / GDELT</span>
+            <span class="tag">Gradient Boosting</span>
+            <span class="tag">Emerging Markets</span>
+            <span class="tag">LatAm</span>
+        </div>
+
+        <div class="abstract">
+            <div class="abstract-label">Overview</div>
+            <p>I investigate whether media sentiment extracted from 18,089 English-language financial news articles predicts excess returns on the iShares Latin America 40 ETF (ILF) across Brazil, Mexico, Argentina, Chile, and Colombia from 2022 to 2026. After stripping global factor exposure via OLS residualization, I estimate average treatment effects with backdoor adjustment and placebo testing. A gradient boosting classifier achieves 52.7% directional accuracy out-of-sample. Two patterns survive causal scrutiny: neutral Brazilian central bank coverage and negative Colombian protest coverage, both associated with positive ILF residuals — suggesting LatAm news carries incremental information beyond global factors, though the predictable component is modest.</p>
+        </div>
+
+        <img class="preview-img" src="assets/latam.png" alt="LatAm Signal Terminal dashboard" />
+
+        <div class="embed-wrapper">
+            <iframe src="https://latam-market-predictor.onrender.com" title="LatAm Market Predictor Dashboard"></iframe>
+        </div>
+
+        <div class="actions">
+            <a href="https://latam-market-predictor.onrender.com" target="_blank" rel="noopener" class="btn btn--primary"><i class="fas fa-chart-line"></i> Visit Live Dashboard</a>
+            <a href="pdf/JB_LatAm_WritingSample.pdf" download class="btn"><i class="fas fa-file-alt"></i> Download Paper (PDF)</a>
+        </div>
+
+        <div class="page-footer">
+            <a href="index.html" class="footer-back"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            var html = document.documentElement;
+            var saved = localStorage.getItem('theme');
+            if (saved) html.setAttribute('data-theme', saved);
+            document.getElementById('theme-btn').addEventListener('click', function () {
+                var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+            });
+        })();
+    </script>
+</body>
+</html>
